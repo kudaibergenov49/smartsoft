@@ -30,18 +30,18 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
             jdbcTemplate.query(
                     "SELECT ssoid, ts, grp, type, subtype, url, orgid, formid, code, ltpa, sudirresponse, ymdh FROM usr",
                     (rs, row) -> new User(
-                            rs.getString(1),
-                            rs.getLong(2),
-                            rs.getString(3),
-                            rs.getString(4),
-                            rs.getString(5),
-                            rs.getString(6),
-                            rs.getString(7),
-                            rs.getString(8),
-                            rs.getString(9),
-                            rs.getString(10),
-                            rs.getString(11),
-                            rs.getString(12))
+                            rs.getString("ssoid"),
+                            rs.getLong("ts"),
+                            rs.getString("grp"),
+                            rs.getString("type"),
+                            rs.getString("subtype"),
+                            rs.getString("url"),
+                            rs.getString("orgid"),
+                            rs.getString("formid"),
+                            rs.getString("code"),
+                            rs.getString("ltpa"),
+                            rs.getString("sudirresponse"),
+                            rs.getString("ymdh"))
             ).forEach(user -> log.info("Found <" + user + "> in the database."));
         }
     }

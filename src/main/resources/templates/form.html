@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>Books</title>
+</head>
+<body>
+<h1>Books Database</h1>
+<ul th:each="form : ${forms}">
+    <li th:text="${form.getFormid()}"></li>
+</ul>
+</body>
+</html>

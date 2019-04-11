@@ -1,8 +1,8 @@
-package com.example.ru.smartsoft.csv.reader.reader.config;
+package com.example.ru.smartsoft.csv.reader.config;
 
-import com.example.ru.smartsoft.csv.reader.reader.listener.JobCompletionNotificationListener;
-import com.example.ru.smartsoft.csv.reader.reader.model.User;
-import com.example.ru.smartsoft.csv.reader.reader.processor.UserItemProcessor;
+import com.example.ru.smartsoft.csv.reader.listener.JobCompletionNotificationListener;
+import com.example.ru.smartsoft.csv.reader.model.User;
+import com.example.ru.smartsoft.csv.reader.processor.UserItemProcessor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -41,7 +41,7 @@ public class BatchConfiguration {
                 .name("userItemReader")
                 .lineMapper(lineMapper())
                 .linesToSkip(1)
-                .resource(new ClassPathResource("sample_data.csv"))
+                .resource(new ClassPathResource("test_case.csv"))
                 .delimited()
                 .names(new String[]{"ssoid", "ts", "grp", "type", "subtype", "url", "orgid", "formid", "code", "ltpa", "sudirresponse", "ymdh"})
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<User>() {{

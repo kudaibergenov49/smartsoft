@@ -1,6 +1,9 @@
-package com.example.ru.smartsoft.csv.reader.reader.model;
+package com.example.ru.smartsoft.csv.reader.model;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name = "usr")
@@ -20,13 +23,14 @@ public class User {
     private String code;
     private String ltpa;
     private String sudirresponse;
-    private String ymdh;
+    private Date ymdh;
 
     public User() {
 
     }
 
-    public User(String ssoid, Long ts, String grp, String type, String subtype, String url, String orgid, String formid, String code, String ltpa, String sudirresponse, String ymdh) {
+    public User(String ssoid, Long ts, String grp, String type, String subtype, String url, String orgid, String formid,
+                String code, String ltpa, String sudirresponse, Date ymdh) {
         this.ssoid = ssoid;
         this.ts = ts;
         this.grp = grp;
@@ -129,12 +133,12 @@ public class User {
         this.sudirresponse = sudirresponse;
     }
 
-    public String getYmdh() {
+    public Date getYmdh() {
         return ymdh;
     }
 
-    public void setYmdh(String ymdh) {
-        this.ymdh = ymdh;
+    public void setYmdh(String ymdh) throws ParseException {
+        this.ymdh = new SimpleDateFormat("yyyy-MM-dd-HH").parse(ymdh);
     }
 
     @Override
@@ -150,6 +154,6 @@ public class User {
                 ", code: " + this.code +
                 ", ltpa: " + this.ltpa +
                 ", sudirresponse: " + this.sudirresponse +
-                ", ymdh: " + this.ymdh;
+                ", ymdh: " + this.ymdh.toString();
     }
 }

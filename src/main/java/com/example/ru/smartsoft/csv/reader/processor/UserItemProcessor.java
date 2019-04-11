@@ -1,9 +1,11 @@
-package com.example.ru.smartsoft.csv.reader.reader.processor;
+package com.example.ru.smartsoft.csv.reader.processor;
 
-import com.example.ru.smartsoft.csv.reader.reader.model.User;
+import com.example.ru.smartsoft.csv.reader.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
+
+import java.util.Date;
 
 public class UserItemProcessor implements ItemProcessor<User, User> {
 
@@ -22,7 +24,7 @@ public class UserItemProcessor implements ItemProcessor<User, User> {
         final String code = user.getCode();
         final String ltpa = user.getLtpa();
         final String sudirresponse = user.getSudirresponse();
-        final String ymdh = user.getYmdh();
+        final Date ymdh = user.getYmdh();
 
         final User transformedUser = new User(ssoid, ts, grp, type, subtype, url, orgid, formid, code, ltpa, sudirresponse, ymdh);
         System.out.println("Converting (" + user + ") into (" + transformedUser + ")");

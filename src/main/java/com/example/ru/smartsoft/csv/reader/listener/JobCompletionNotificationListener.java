@@ -1,6 +1,6 @@
-package com.example.ru.smartsoft.csv.reader.reader.listener;
+package com.example.ru.smartsoft.csv.reader.listener;
 
-import com.example.ru.smartsoft.csv.reader.reader.model.User;
+import com.example.ru.smartsoft.csv.reader.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.BatchStatus;
@@ -41,7 +41,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
                             rs.getString("code"),
                             rs.getString("ltpa"),
                             rs.getString("sudirresponse"),
-                            rs.getString("ymdh"))
+                            rs.getDate("ymdh"))
             ).forEach(user -> log.info("Found <" + user + "> in the database."));
         }
     }

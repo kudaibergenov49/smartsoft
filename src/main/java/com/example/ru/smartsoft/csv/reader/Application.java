@@ -1,4 +1,4 @@
-package com.example.ru.smartsoft.csv.reader.reader;
+package com.example.ru.smartsoft.csv.reader;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

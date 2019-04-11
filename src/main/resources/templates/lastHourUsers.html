@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>Записи за последний час</title>
+</head>
+<body>
+<ul th:each="user : ${lastHourUsers}">
+    <li th:text="${user.ssoid} "><li/>
+    <li th:text="${user.ts}"></li>
+    <li th:text="${user.grp}"></li>
+    <li th:text="${user.type}"></li>
+    <li th:text="${user.subtype}"></li>
+    <li th:text="${user.url}"></li>
+    <li th:text="${user.formid}"></li>
+    <li th:text="${user.code}"></li>
+    <li th:text="${user.code}"></li>
+    <li th:text="${user.ltpa}"></li>
+    <li th:text="${user.sudirresponse}"></li>
+    <li th:text="${user.ymdh}"></li>
+</ul>
+</body>
+</html>

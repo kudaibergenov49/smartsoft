@@ -4,12 +4,23 @@
 <head lang="en">
     <meta charset="UTF-8" />
     <title>Top 5 used forms</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/users.css}">
 </head>
 <body>
 <h1>ТОП – 5 самых используемых форм</h1>
-<ul th:each="form : ${forms}">
-    <li th:text="${form.formid}"></li>
-    <li th:text="${form.count}"></li>
-</ul>
+<table id = "users">
+<thead>
+<tr>
+    <th> Форма</th>
+    <th> Количество</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="form : ${forms}">
+    <td><span th:text="${form.formid}"></span></td>
+    <td><span th:text="${form.count}"></span></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

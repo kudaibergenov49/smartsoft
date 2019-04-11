@@ -4,9 +4,27 @@
 <head lang="en">
     <meta charset="UTF-8"/>
     <title>Записи за последний час</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/users.css}">
 </head>
 <body>
-<table>
+<h1>Cписок пользователей и используемых ими форм за последний час</h1>
+<table id = "users">
+    <thead>
+    <tr>
+        <th> Уникальный идентификатор пользователей</th>
+        <th> Время</th>
+        <th> Группа события</th>
+        <th> Тип события</th>
+        <th> Подтип события</th>
+        <th> Адрес с которого пришло событие</th>
+        <th> Организация предоставляющая услугу</th>
+        <th> Идентификатор формы</th>
+        <th>Код</th>
+        <th> Ключ сессии</th>
+        <th> Ответ от сервиса авторизации</th>
+        <th> Дата</th>
+    </tr>
+    </thead>
     <tbody>
     <tr th:each="user : ${lastHourUsers}">
         <td><span th:text="${user.ssoid} "></span></td>
@@ -15,8 +33,8 @@
         <td><span th:text="${user.type}"></span></td>
         <td><span th:text="${user.subtype}"></span></td>
         <td><span th:text="${user.url}"></span></td>
+        <td><span th:text="${user.orgid}"></span></td>
         <td><span th:text="${user.formid}"></span></td>
-        <td><span th:text="${user.code}"></span></td>
         <td><span th:text="${user.code}"></span></td>
         <td><span th:text="${user.ltpa}"></span></td>
         <td><span th:text="${user.sudirresponse}"></span></td>

@@ -1,9 +1,11 @@
 package com.example.ru.smartsoft.csv.reader.model;
 
+import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Entity
 @Table(name = "usr")
@@ -17,6 +19,7 @@ public class User {
     private String grp;//Группа события
     private String type;//Тип события
     private String subtype;//Подтип события
+    @URL
     private String url;//Адрес с которого пришло событие
     private String orgid;//Организация предоставляющая услугу
     private String formid;//Идентификатор формы
@@ -138,7 +141,9 @@ public class User {
     }
 
     public void setYmdh(String ymdh) throws ParseException {
-        this.ymdh = new SimpleDateFormat("yyyy-MM-dd-HH").parse(ymdh);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH");
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        this.ymdh = format.parse(ymdh);
     }
 
     @Override

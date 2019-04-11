@@ -2,6 +2,9 @@ package com.example.ru.smartsoft.csv.reader.repository;
 
 import com.example.ru.smartsoft.csv.reader.model.FormCount;
 import com.example.ru.smartsoft.csv.reader.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,5 +21,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query(value = "select *\n" +
             "from  usr\n" +
             "where ymdh >= DATE_SUB(NOW(),INTERVAL 15500 HOUR)",nativeQuery = true)
-    List<User> lastHourUsers();
+    Page<User> lastHourUsers(Pageable pageable);
 }

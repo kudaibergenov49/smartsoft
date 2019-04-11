@@ -3,12 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta charset="UTF-8" />
-    <title>Books</title>
+    <title>Top 5 used forms</title>
 </head>
 <body>
-<h1>Books Database</h1>
+<h1>ТОП – 5 самых используемых форм</h1>
 <ul th:each="form : ${forms}">
-    <li th:text="${form.getFormid()}"></li>
+    <li th:text="${form.formid}"></li>
+    <li th:text="${form.count}"></li>
 </ul>
 </body>
 </html>

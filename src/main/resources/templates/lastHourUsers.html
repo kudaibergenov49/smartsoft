@@ -2,23 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Записи за последний час</title>
 </head>
 <body>
-<ul th:each="user : ${lastHourUsers}">
-    <li th:text="${user.ssoid} "><li/>
-    <li th:text="${user.ts}"></li>
-    <li th:text="${user.grp}"></li>
-    <li th:text="${user.type}"></li>
-    <li th:text="${user.subtype}"></li>
-    <li th:text="${user.url}"></li>
-    <li th:text="${user.formid}"></li>
-    <li th:text="${user.code}"></li>
-    <li th:text="${user.code}"></li>
-    <li th:text="${user.ltpa}"></li>
-    <li th:text="${user.sudirresponse}"></li>
-    <li th:text="${user.ymdh}"></li>
-</ul>
+<table>
+    <tbody>
+    <tr th:each="user : ${lastHourUsers}">
+        <td><span th:text="${user.ssoid} "></span></td>
+        <td><span th:text="${user.ts}"></span></td>
+        <td><span th:text="${user.grp}"></span></td>
+        <td><span th:text="${user.type}"></span></td>
+        <td><span th:text="${user.subtype}"></span></td>
+        <td><span th:text="${user.url}"></span></td>
+        <td><span th:text="${user.formid}"></span></td>
+        <td><span th:text="${user.code}"></span></td>
+        <td><span th:text="${user.code}"></span></td>
+        <td><span th:text="${user.ltpa}"></span></td>
+        <td><span th:text="${user.sudirresponse}"></span></td>
+        <td><span th:text="${user.ymdh}"></span></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

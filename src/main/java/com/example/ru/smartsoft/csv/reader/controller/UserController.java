@@ -1,10 +1,12 @@
 package com.example.ru.smartsoft.csv.reader.controller;
 
+import com.example.ru.smartsoft.csv.reader.model.FormCount;
 import com.example.ru.smartsoft.csv.reader.model.User;
 import com.example.ru.smartsoft.csv.reader.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,12 +18,21 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    /*@GetMapping("/form")
+    @GetMapping("/form")
     public String form(Map<String, Object> model) {
-        List<FormCount> forms = userRepository.findForms();
-        model.put("forms", forms);
+        List<String> forms = userRepository.findTop5Forms();
+        List<FormCount> formCountList = new ArrayList<>();
+        for (String form : forms) {
+            FormCount formCount = new FormCount();
+            if(form == null) form = "";
+            formCount.setFormid(form);
+            Integer count = userRepository.findFormCount(form);
+            formCount.setCount(count);
+            formCountList.add(formCount);
+        }
+        model.put("forms", formCountList);
         return "form";
-    }*/
+    }
 
     @GetMapping("/lastHourUsers")
     public String lastHourUsers(Map<String, Object> model) {

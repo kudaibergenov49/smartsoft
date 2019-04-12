@@ -21,8 +21,26 @@ public class HttpRequestTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void greetingShouldReturnDefaultMessage() throws Exception {
+    public void helloPageShouldReturnDefaultMessage() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
                 String.class)).contains("Тестовое задание компании Софтлайн !");
+    }
+
+    @Test
+    public void formShouldReturnDefaultMessage() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/form",
+                String.class)).contains("ТОП – 5 самых используемых форм");
+    }
+
+    @Test
+    public void lastHourActivitiesShouldReturnDefaultMessage() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/usersLastActivities",
+                String.class)).contains("Список пользователей, которые начали активность на форме и их последние активности");
+    }
+
+    @Test
+    public void lastActivitiesShouldReturnDefaultMessage() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/lastHourActivities",
+                String.class)).contains("Cписок пользователей и используемых ими форм за последний час");
     }
 }

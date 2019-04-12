@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Список пользователей, которые начали активность на форме и их последние активности</h1>
-<table id = "users">
+<table id="users">
     <thead>
     <tr>
         <th> Уникальный идентификатор пользователей</th>
@@ -24,5 +24,16 @@
     </tr>
     </tbody>
 </table>
+<div class="pagination-div">
+    <th:block th:each="i: ${#numbers.sequence(0, usersLastActivities.totalPages - 1)}">
+        <span th:if="${usersLastActivities.number == i}" class="selected">[[${i}+1]]</span>
+        <span th:unless="${usersLastActivities.number == i}">
+             <a th:href="@{/usersLastActivities(usersLastActivities=${i},size=${usersLastActivities.size})}">[[${i}+1]]</a>
+        </span>
+    </th:block>
+    <span th:if="${usersLastActivities.hasNext()}">
+        <a th:href="@{/usersLastActivities(usersLastActivities=${usersLastActivities.number+1},size=${usersLastActivities.size})}">Next</a>
+    </span>
+</div>
 </body>
 </html>

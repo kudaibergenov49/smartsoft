@@ -1,13 +1,16 @@
 package com.example.ru.smartsoft.csv.reader.repository;
 
 import com.example.ru.smartsoft.csv.reader.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     @Query(value = " select u.formid from usr u group by u.formid order by count(u.formid) desc limit 5 \n ", nativeQuery = true)
     List<String> top5Forms();
 
@@ -15,8 +18,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Integer formCount(@Param("formid") String formid);
 
     @Query(value = "select * from  usr where ymdh >= DATE_SUB(NOW(),INTERVAL 15500 HOUR)", nativeQuery = true)
-    List<User> lastHourActivities();
+    Page<User> lastHourActivities(@PageableDefault(size = 10) Pageable pageable);
 
-    @Query(value = "select distinct * from usr u where id = (select min(id) from usr us where u.ssoid = us.ssoid) ", nativeQuery = true)
-    List<User> usersLastActivities();
+    @Query(value = "select * from usr u where id = (select min(id) from usr us where u.ssoid = us.ssoid) ", nativeQuery = true)
+    Page<User> usersLastActivities(@PageableDefault(size = 10) Pageable pageable,@Param("pageNumber") int pageNumber);
 }

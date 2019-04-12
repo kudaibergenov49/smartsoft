@@ -21,6 +21,8 @@ import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 
 import javax.sql.DataSource;
 
@@ -78,11 +80,18 @@ public class BatchConfiguration {
     @Bean
     public Step step1(JdbcBatchItemWriter<User> writer) {
         return stepBuilderFactory.get("step1")
-                .<User, User>chunk(10)
+                .<User, User>chunk(1000)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer)
-                .build();
+                .taskExecutor(taskExecutor()).build();
+    }
+
+    @Bean
+    public TaskExecutor taskExecutor() {
+        SimpleAsyncTaskExecutor asyncTaskExecutor = new SimpleAsyncTaskExecutor("spring_batch");
+        asyncTaskExecutor.setConcurrencyLimit(10);
+        return asyncTaskExecutor;
     }
 
     @Bean

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Cписок пользователей и используемых ими форм за последний час</h1>
-<table id = "users">
+<table id="users">
     <thead>
     <tr>
         <th> Уникальный идентификатор пользователей</th>
@@ -42,5 +42,17 @@
     </tr>
     </tbody>
 </table>
+
+<div class="pagination-div">
+    <th:block th:each="i: ${#numbers.sequence(0, lastHourActivities.totalPages - 1)}">
+        <span th:if="${lastHourActivities.number == i}" class="selected">[[${i}+1]]</span>
+        <span th:unless="${lastHourActivities.number == i}">
+             <a th:href="@{/lastHourActivities(lastHourActivities=${i},size=${lastHourActivities.size})}">[[${i}+1]]</a>
+        </span>
+    </th:block>
+    <span th:if="${lastHourActivities.hasNext()}">
+        <a th:href="@{/lastHourActivities(lastHourActivities=${lastHourActivities.number+1},size=${lastHourActivities.size})}">Next</a>
+    </span>
+</div>
 </body>
 </html>

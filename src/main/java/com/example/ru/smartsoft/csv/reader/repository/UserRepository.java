@@ -20,6 +20,6 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     @Query(value = "select * from  usr where ymdh >= DATE_SUB(NOW(),INTERVAL 15500 HOUR)", nativeQuery = true)
     Page<User> lastHourActivities(@PageableDefault(size = 10) Pageable pageable);
 
-    @Query(value = "select * from usr u where id = (select min(id) from usr us where u.ssoid = us.ssoid) ", nativeQuery = true)
+    @Query(value = "select * from usr u where ts = (select max(ts) from usr us where u.ssoid = us.ssoid) ", nativeQuery = true)
     Page<User> usersLastActivities(@PageableDefault(size = 10) Pageable pageable,@Param("pageNumber") int pageNumber);
 }

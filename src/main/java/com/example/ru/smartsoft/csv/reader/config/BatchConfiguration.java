@@ -43,7 +43,7 @@ public class BatchConfiguration {
                 .name("userItemReader")
                 .lineMapper(lineMapper())
                 .linesToSkip(1)
-                .resource(new ClassPathResource("sample_data.csv"))
+                .resource(new ClassPathResource("test_case.csv"))
                 .delimited()
                 .names(new String[]{"ssoid", "ts", "grp", "type", "subtype", "url", "orgid", "formid", "code", "ltpa", "sudirresponse", "ymdh"})
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<User>() {{

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>Записи за последний час</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/users.css}">
+</head>
+<body>
+<h1>Список пользователей, которые начали активность на форме и их последние активности</h1>
+<table id = "users">
+    <thead>
+    <tr>
+        <th> Уникальный идентификатор пользователей</th>
+        <th> Тип события</th>
+        <th> Подтип события</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${usersLastActivities}">
+        <td><span th:text="${user.ssoid} "></span></td>
+        <td><span th:text="${user.type}"></span></td>
+        <td><span th:text="${user.subtype}"></span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

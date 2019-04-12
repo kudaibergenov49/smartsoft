@@ -1,6 +1,7 @@
 package com.example.ru.smartsoft.csv.reader.model;
 
 import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -142,7 +143,7 @@ public class User {
 
     public void setYmdh(String ymdh) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH");
-        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        format.setTimeZone(TimeZone.getDefault());
         this.ymdh = format.parse(ymdh);
     }
 
